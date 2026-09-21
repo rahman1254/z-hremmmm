@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#120d10" />
   <meta name="robots" content="noindex,nofollow,noarchive" />
   <title>Bizim Hikâyemiz</title>
+
   <style>
     :root{
       --text:#fff8f5;
@@ -14,46 +15,343 @@
       --line:rgba(255,255,255,.16);
       --accent:#f3b9bf;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:#090708;color:var(--text);font-family:Georgia,"Times New Roman",serif}
-    body{overflow-x:hidden}
-    .bg{position:fixed;inset:0;background:url('assets/biz.jpg') center 47%/cover no-repeat;transform:scale(1.025);z-index:0}
-    .shade{position:fixed;inset:0;z-index:1;background:
-      radial-gradient(circle at 50% 35%,rgba(0,0,0,.08),rgba(0,0,0,.54) 70%),
-      linear-gradient(to bottom,rgba(10,8,9,.18),rgba(10,8,9,.32) 38%,rgba(10,8,9,.84) 100%)}
-    .grain{position:fixed;inset:0;z-index:2;opacity:.08;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
-    main{position:relative;z-index:3;min-height:100svh;display:flex;align-items:flex-end;justify-content:center;padding:clamp(24px,5vw,56px) 18px max(28px,env(safe-area-inset-bottom))}
-    .card{width:min(760px,100%);padding:28px 24px 24px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,rgba(17,12,14,.24),rgba(17,12,14,.56));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 30px 80px rgba(0,0,0,.35);animation:rise 1.25s cubic-bezier(.2,.8,.2,1) both}
-    .eyebrow{font:600 11px/1.4 Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
-    h1{font-size:clamp(38px,8vw,76px);line-height:.96;letter-spacing:-.035em;margin:0 0 18px;font-weight:500;text-wrap:balance}
-    .lead{font-size:clamp(17px,2.6vw,23px);line-height:1.55;margin:0;color:rgba(255,248,245,.92);max-width:660px}
-    .quote{margin:24px 0 0;padding:16px 0 0;border-top:1px solid var(--line);font-style:italic;font-size:clamp(15px,2.2vw,19px);line-height:1.55;color:var(--muted)}
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-    button{appearance:none;border:0;border-radius:999px;padding:13px 18px;font:600 14px/1 Arial,sans-serif;cursor:pointer;transition:.22s ease}
-    .primary{background:var(--text);color:#201519}.primary:hover{transform:translateY(-1px);background:white}
-    .ghost{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--line)}.ghost:hover{background:rgba(255,255,255,.13)}
-    .note{display:none;margin-top:18px;padding:18px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:16px;line-height:1.6;color:rgba(255,248,245,.9)}
-    .note.show{display:block;animation:fade .45s ease both}
-    .signature{margin-top:14px;font-style:italic;color:var(--accent)}
-    .music{position:fixed;z-index:4;top:max(16px,env(safe-area-inset-top));right:16px;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:999px;background:rgba(12,9,10,.42);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:600 12px/1 Arial,sans-serif;color:white;cursor:pointer}
-    .dot{width:7px;height:7px;border-radius:50%;background:#f2bec3;box-shadow:0 0 0 0 rgba(242,190,195,.5)}
-    .playing .dot{animation:pulse 1.4s infinite}
-    .start{position:fixed;inset:0;z-index:10;display:grid;place-items:center;padding:24px;background:rgba(8,6,7,.76);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:.5s ease}
-    .start.hide{opacity:0;pointer-events:none}
-    .startbox{text-align:center;max-width:420px}
-    .startbox .heart{font-size:42px;display:block;margin-bottom:14px;animation:heartbeat 1.8s infinite}
-    .startbox h2{font-size:32px;margin:0 0 10px;font-weight:500}
-    .startbox p{font:400 15px/1.55 Arial,sans-serif;color:rgba(255,255,255,.72);margin:0 0 20px}
-    .startbox button{font-size:15px;padding:15px 22px}
-    @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-    @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-    @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(242,190,195,0)}100%{box-shadow:0 0 0 0 rgba(242,190,195,0)}}
-    @keyframes heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.08)}24%{transform:scale(1)}36%{transform:scale(1.08)}50%{transform:scale(1)}}
-    @media (max-width:520px){main{align-items:flex-end}.card{padding:24px 20px 20px;border-radius:24px}h1{font-size:45px}.bg{background-position:50% 42%}.lead{font-size:17px}}
-    @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+
+    *{
+      box-sizing:border-box
+    }
+
+    html,body{
+      margin:0;
+      min-height:100%;
+      background:#090708;
+      color:var(--text);
+      font-family:Georgia,"Times New Roman",serif
+    }
+
+    body{
+      overflow-x:hidden
+    }
+
+    .bg{
+      position:fixed;
+      inset:0;
+      background:url('assets/biz.jpg') center 47%/cover no-repeat;
+      transform:scale(1.025);
+      z-index:0
+    }
+
+    .shade{
+      position:fixed;
+      inset:0;
+      z-index:1;
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(0,0,0,.08),
+          rgba(0,0,0,.54) 70%
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(10,8,9,.18),
+          rgba(10,8,9,.32) 38%,
+          rgba(10,8,9,.84) 100%
+        )
+    }
+
+    .grain{
+      position:fixed;
+      inset:0;
+      z-index:2;
+      opacity:.08;
+      pointer-events:none;
+      background-image:url(
+        "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"
+      )
+    }
+
+    main{
+      position:relative;
+      z-index:3;
+      min-height:100svh;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding:clamp(24px,5vw,56px) 18px max(28px,env(safe-area-inset-bottom))
+    }
+
+    .card{
+      width:min(760px,100%);
+      padding:28px 24px 24px;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(17,12,14,.24),
+          rgba(17,12,14,.56)
+        );
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
+      animation:rise 1.25s cubic-bezier(.2,.8,.2,1) both
+    }
+
+    .eyebrow{
+      font:600 11px/1.4 Arial,sans-serif;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin:0 0 12px
+    }
+
+    h1{
+      font-size:clamp(38px,8vw,76px);
+      line-height:.96;
+      letter-spacing:-.035em;
+      margin:0 0 18px;
+      font-weight:500;
+      text-wrap:balance
+    }
+
+    .lead{
+      font-size:clamp(17px,2.6vw,23px);
+      line-height:1.55;
+      margin:0;
+      color:rgba(255,248,245,.92);
+      max-width:660px
+    }
+
+    .quote{
+      margin:24px 0 0;
+      padding:16px 0 0;
+      border-top:1px solid var(--line);
+      font-style:italic;
+      font-size:clamp(15px,2.2vw,19px);
+      line-height:1.55;
+      color:var(--muted)
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px
+    }
+
+    button{
+      appearance:none;
+      border:0;
+      border-radius:999px;
+      padding:13px 18px;
+      font:600 14px/1 Arial,sans-serif;
+      cursor:pointer;
+      transition:.22s ease
+    }
+
+    .primary{
+      background:var(--text);
+      color:#201519
+    }
+
+    .primary:hover{
+      transform:translateY(-1px);
+      background:white
+    }
+
+    .ghost{
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      border:1px solid var(--line)
+    }
+
+    .ghost:hover{
+      background:rgba(255,255,255,.13)
+    }
+
+    .note{
+      display:none;
+      margin-top:18px;
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--line);
+      font-size:16px;
+      line-height:1.6;
+      color:rgba(255,248,245,.9)
+    }
+
+    .note.show{
+      display:block;
+      animation:fade .45s ease both
+    }
+
+    .signature{
+      margin-top:14px;
+      font-style:italic;
+      color:var(--accent)
+    }
+
+    .music{
+      position:fixed;
+      z-index:4;
+      top:max(16px,env(safe-area-inset-top));
+      right:16px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      background:rgba(12,9,10,.42);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      font:600 12px/1 Arial,sans-serif;
+      color:white;
+      cursor:pointer
+    }
+
+    .dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#f2bec3;
+      box-shadow:0 0 0 0 rgba(242,190,195,.5)
+    }
+
+    .playing .dot{
+      animation:pulse 1.4s infinite
+    }
+
+    .start{
+      position:fixed;
+      inset:0;
+      z-index:10;
+      display:grid;
+      place-items:center;
+      padding:24px;
+      background:rgba(8,6,7,.76);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      transition:.5s ease
+    }
+
+    .start.hide{
+      opacity:0;
+      pointer-events:none
+    }
+
+    .startbox{
+      text-align:center;
+      max-width:420px
+    }
+
+    .startbox .heart{
+      font-size:42px;
+      display:block;
+      margin-bottom:14px;
+      animation:heartbeat 1.8s infinite
+    }
+
+    .startbox h2{
+      font-size:32px;
+      margin:0 0 10px;
+      font-weight:500
+    }
+
+    .startbox p{
+      font:400 15px/1.55 Arial,sans-serif;
+      color:rgba(255,255,255,.72);
+      margin:0 0 20px
+    }
+
+    .startbox button{
+      font-size:15px;
+      padding:15px 22px
+    }
+
+    @keyframes rise{
+      from{
+        opacity:0;
+        transform:translateY(24px)
+      }
+      to{
+        opacity:1;
+        transform:none
+      }
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(8px)
+      }
+      to{
+        opacity:1;
+        transform:none
+      }
+    }
+
+    @keyframes pulse{
+      70%{
+        box-shadow:0 0 0 9px rgba(242,190,195,0)
+      }
+      100%{
+        box-shadow:0 0 0 0 rgba(242,190,195,0)
+      }
+    }
+
+    @keyframes heartbeat{
+      0%,100%{
+        transform:scale(1)
+      }
+      12%{
+        transform:scale(1.08)
+      }
+      24%{
+        transform:scale(1)
+      }
+      36%{
+        transform:scale(1.08)
+      }
+      50%{
+        transform:scale(1)
+      }
+    }
+
+    @media (max-width:520px){
+      main{
+        align-items:flex-end
+      }
+
+      .card{
+        padding:24px 20px 20px;
+        border-radius:24px
+      }
+
+      h1{
+        font-size:45px
+      }
+
+      .bg{
+        background-position:50% 42%
+      }
+
+      .lead{
+        font-size:17px
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *{
+        animation:none!important;
+        scroll-behavior:auto!important
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <div class="bg" aria-hidden="true"></div>
   <div class="shade" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
@@ -61,79 +359,234 @@
   <div class="start" id="start">
     <div class="startbox">
       <span class="heart">♡</span>
+
       <h2>Sana ufak bi şey hazırladım.</h2>
-      <p>İki dakika bana kızmadan sonuna kadar bak olur mu?</p>
-      <button class="primary" id="enter">Bak bakalım</button>
+
+      <p>
+        İki dakika bana kızmadan sonuna kadar bak olur mu?
+      </p>
+
+      <button class="primary" id="enter">
+        Bak bakalım
+      </button>
     </div>
   </div>
 
-  <button class="music" id="musicBtn" aria-label="Müziği aç veya kapat">
-    <span class="dot"></span><span id="musicText">müzik</span>
+  <button
+    class="music"
+    id="musicBtn"
+    aria-label="Müziği aç veya kapat"
+  >
+    <span class="dot"></span>
+    <span id="musicText">müzik</span>
   </button>
 
   <main>
     <section class="card">
-      <p class="eyebrow">sana söylemek istediğim şeyler</p>
-      <h1>Ben seni hâlâ<br>özlüyorum.</h1>
-      <p class="lead">
-        Ne kadar süslü cümle kursam boş aslında. <strong>Ben seni özledim.</strong> Seninle konuşmayı, saçma şeylere beraber gülmeyi, yan yana durmayı... Ayrı kalınca insan bazı şeylerin değerini daha net anlıyor ya, bende biraz öyle oldu. Hatalarımı savunmaya çalışmıyorum. Seni kırdığım yerleri düzeltmek, sana bu sefer daha güzel davranmak istiyorum. Çünkü ne olursa olsun içimde hâlâ <strong>“biz” diye bir yer var.</strong>
+
+      <p class="eyebrow">
+        sana söylemek istediğim şeyler
       </p>
-      <p class="quote">“Eskisini unutalım demiyorum. Sadece istersek, bundan sonrasını daha güzel yapabiliriz.”</p>
+
+      <h1>
+        Ben seni hâlâ<br>
+        özlüyorum.
+      </h1>
+
+      <p class="lead">
+        Ne kadar süslü cümle kursam boş aslında.
+        <strong>Ben seni özledim.</strong>
+
+        Seninle konuşmayı, saçma şeylere beraber gülmeyi,
+        yan yana durmayı... Ayrı kalınca insan bazı şeylerin
+        değerini daha net anlıyor ya, bende biraz öyle oldu.
+
+        Hatalarımı savunmaya çalışmıyorum. Seni kırdığım yerleri
+        düzeltmek, sana bu sefer daha güzel davranmak istiyorum.
+
+        Çünkü ne olursa olsun içimde hâlâ
+        <strong>“biz” diye bir yer var.</strong>
+      </p>
+
+      <p class="quote">
+        “Eskisini unutalım demiyorum. Sadece istersek,
+        bundan sonrasını daha güzel yapabiliriz.”
+      </p>
+
       <div class="actions">
-        <button class="primary" id="reveal">Bir de bunu söyleyeyim...</button>
-        <button class="ghost" id="musicToggle">Müziği aç / kapat</button>
+
+        <button class="primary" id="reveal">
+          Bir de bunu söyleyeyim...
+        </button>
+
+        <button class="ghost" id="musicToggle">
+          Müziği aç / kapat
+        </button>
+
       </div>
+
       <div class="note" id="note">
-        Senden hemen bir şey beklemiyorum. Sadece müsait olduğunda karşılıklı oturup konuşalım istiyorum. Kahve olur, yürüyüş olur, neresi olursa... Seni gerçekten dinlemek istiyorum, kendimi de sana anlatmak istiyorum. Belki her şey bir anda düzelmez, biliyorum. Ama içimde kalmasın: <strong>ben seni kaybetmek istemiyorum.</strong> Seninle güldüğümüz o hâlimizi, yan yana olduğumuz zamanı, seni bana yakın hissettiğim anları özlüyorum. İçinde bana dair ufacık da olsa bir yer kaldıysa, bir kez daha deneyelim mi?
-        <div class="signature">— Çünkü ben hâlâ seni seviyorum.</div>
+
+        Senden hemen bir şey beklemiyorum.
+
+        Sadece müsait olduğunda karşılıklı oturup konuşalım
+        istiyorum. Kahve olur, yürüyüş olur, neresi olursa...
+
+        Seni gerçekten dinlemek istiyorum, kendimi de sana
+        anlatmak istiyorum.
+
+        Belki her şey bir anda düzelmez, biliyorum.
+        Ama içimde kalmasın:
+
+        <strong>
+          ben seni kaybetmek istemiyorum.
+        </strong>
+
+        Seninle güldüğümüz o hâlimizi, yan yana olduğumuz zamanı,
+        seni bana yakın hissettiğim anları özlüyorum.
+
+        İçinde bana dair ufacık da olsa bir yer kaldıysa,
+        bir kez daha deneyelim mi?
+
+        <div class="signature">
+          — Çünkü ben hâlâ seni seviyorum.
+        </div>
+
       </div>
+
     </section>
   </main>
 
-  <audio id="song" src="assets/romantik.wav" loop preload="auto"></audio>
+  <audio
+    id="song"
+    src="assets/romantik.wav"
+    loop
+    preload="auto">
+  </audio>
+
   <script>
-    const song = document.getElementById('song');
-    const start = document.getElementById('start');
-    const enter = document.getElementById('enter');
-    const musicBtn = document.getElementById('musicBtn');
-    const musicToggle = document.getElementById('musicToggle');
-    const musicText = document.getElementById('musicText');
-    const reveal = document.getElementById('reveal');
-    const note = document.getElementById('note');
+
+    const song =
+      document.getElementById('song');
+
+    const start =
+      document.getElementById('start');
+
+    const enter =
+      document.getElementById('enter');
+
+    const musicBtn =
+      document.getElementById('musicBtn');
+
+    const musicToggle =
+      document.getElementById('musicToggle');
+
+    const musicText =
+      document.getElementById('musicText');
+
+    const reveal =
+      document.getElementById('reveal');
+
+    const note =
+      document.getElementById('note');
+
 
     song.volume = 0.42;
 
+
     function syncMusicUI(){
+
       const playing = !song.paused;
-      musicBtn.classList.toggle('playing', playing);
-      musicText.textContent = playing ? 'müzik açık' : 'müzik kapalı';
+
+      musicBtn.classList.toggle(
+        'playing',
+        playing
+      );
+
+      musicText.textContent =
+        playing
+          ? 'müzik açık'
+          : 'müzik kapalı';
     }
+
 
     async function playMusic(){
-      try { await song.play(); } catch(e) {}
+
+      try{
+        await song.play();
+      }
+      catch(e){}
+
       syncMusicUI();
     }
+
 
     async function toggleMusic(){
-      if(song.paused) await playMusic(); else song.pause();
+
+      if(song.paused){
+        await playMusic();
+      }
+      else{
+        song.pause();
+      }
+
       syncMusicUI();
     }
 
-    enter.addEventListener('click', async () => {
-      start.classList.add('hide');
-      setTimeout(() => start.remove(), 550);
-      await playMusic();
-    });
 
-    musicBtn.addEventListener('click', toggleMusic);
-    musicToggle.addEventListener('click', toggleMusic);
-    song.addEventListener('play', syncMusicUI);
-    song.addEventListener('pause', syncMusicUI);
+    enter.addEventListener(
+      'click',
+      async () => {
 
-    reveal.addEventListener('click', () => {
-      note.classList.toggle('show');
-      reveal.textContent = note.classList.contains('show') ? 'İçimde kalan buydu 🤍' : 'Bir de bunu söyleyeyim...';
-    });
+        start.classList.add('hide');
+
+        setTimeout(
+          () => start.remove(),
+          550
+        );
+
+        await playMusic();
+
+      }
+    );
+
+
+    musicBtn.addEventListener(
+      'click',
+      toggleMusic
+    );
+
+    musicToggle.addEventListener(
+      'click',
+      toggleMusic
+    );
+
+    song.addEventListener(
+      'play',
+      syncMusicUI
+    );
+
+    song.addEventListener(
+      'pause',
+      syncMusicUI
+    );
+
+
+    reveal.addEventListener(
+      'click',
+      () => {
+
+        note.classList.toggle('show');
+
+        reveal.textContent =
+          note.classList.contains('show')
+            ? 'İçimde kalan buydu 🤍'
+            : 'Bir de bunu söyleyeyim...';
+
+      }
+    );
+
   </script>
+
 </body>
 </html>
